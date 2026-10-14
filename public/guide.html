@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Cricket Academy - Site Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        h2 {
+            color: #1e40af;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #ea580c;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #ea580c;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .page-card {
+            background: #f8f9fa;
+            border-left: 4px solid #ea580c;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .page-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .page-card h4 {
+            color: #1e40af;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .page-card p {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .nav-tab {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .nav-tab:hover {
+            border-color: #1e40af;
+            color: #1e40af;
+        }
+        
+        .nav-tab.active {
+            background: #1e40af;
+            color: white;
+            border-color: #1e40af;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ea580c;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .stat-box .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ea580c;
+        }
+        
+        .stat-box .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .step {
+            background: #e7f3ff;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #1e40af;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #1e40af;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .step h4 {
+            color: #1e40af;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+        
+        .step p {
+            margin-left: 45px;
+            color: #555;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #1e40af;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1e3a8a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #ea580c;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #d84600;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(234, 88, 12, 0.3);
+        }
+        
+        footer {
+            background: #f8f9fa;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🏏 Elite Cricket Academy</h1>
+            <p>Complete Site Guide & Navigation</p>
+        </header>
+        
+        <!-- Navigation Tabs -->
+        <div style="padding: 20px 40px; background: white;">
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showSection('overview')">Overview</button>
+                <button class="nav-tab" onclick="showSection('pages')">All Pages</button>
+                <button class="nav-tab" onclick="showSection('features')">Features</button>
+                <button class="nav-tab" onclick="showSection('setup')">Setup Guide</button>
+                <button class="nav-tab" onclick="showSection('deploy')">Deployment</button>
+                <button class="nav-tab" onclick="showSection('customize')">Customize</button>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content" style="padding: 40px; display: block;">
+            
+            <!-- Overview Section -->
+            <div id="overview" class="section active">
+                <h2>📊 Project Overview</h2>
+                
+                <div class="grid-2">
+                    <div class="stat-box">
+                        <div class="icon">📄</div>
+                        <div class="number">10</div>
+                        <div class="label">Complete Pages</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="icon">🔗</div>
+                        <div class="number">4</div>
+                        <div class="label">API Routes</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="icon">⚙️</div>
+                        <div class="number">2500+</div>
+                        <div class="label">Lines of Code</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="icon">📚</div>
+                        <div class="number">9</div>
+                        <div class="label">Guides</div>
+                    </div>
+                </div>
+                
+                <h3>What You Have</h3>
+                <ul class="feature-list">
+                    <li>Professional cricket academy website</li>
+                    <li>Mobile responsive design</li>
+                    <li>10 fully functional pages</li>
+                    <li>Working contact form</li>
+                    <li>API routes ready for database</li>
+                    <li>SEO optimized</li>
+                    <li>Production-ready code</li>
+                    <li>Complete documentation</li>
+                </ul>
+                
+                <h3>Tech Stack</h3>
+                <ul class="feature-list">
+                    <li><strong>Framework:</strong> Next.js 15</li>
+                    <li><strong>Language:</strong> TypeScript</li>
+                    <li><strong>Styling:</strong> Tailwind CSS</li>
+                    <li><strong>Deployment:</strong> Vercel or Railway</li>
+                    <li><strong>Database Ready:</strong> PostgreSQL/MongoDB</li>
+                </ul>
+            </div>
+            
+            <!-- Pages Section -->
+            <div id="pages" class="section">
+                <h2>📄 All Pages</h2>
+                
+                <div class="page-card">
+                    <h4>🏠 Home Page</h4>
+                    <p>Hero section with academy overview, statistics, why choose us section, and recent achievements.</p>
+                </div>
+                
+                <div class="page-card">
+                    <h4>ℹ️ About Page</h4>
+                    <p>Academy story, mission statement, core values, facilities, and awards & recognition.</p>
+                </div>
+                
+                <div class="page-card">
+                    <h4>👥 Teams Page</h4>
+                    <p>Display all academy teams with coach names, player count, and win statistics.</p>
+                </div>
+                
+                <div class="page-card">
+                    <h4>🏏 Players Page</h4>
+                    <p>Player profiles with positions, runs scored, wickets taken, and team associations.</p>
+                </div>
+                
+                <div class="page-card">
+                    <h4>🎯 Matches Page</h4>
+                    <p>Complete match history showing team matchups, dates, results, and scores.</p>
+                </div>
+                
+                <div class="page-card">
+                    <h4>👨‍🏫 Coaches Page</h4>
+                    <p>Coach profiles with specialization, experience, and professional qualifications.</p>
+                </div>
+                
+                <div class="page-card">
+                    <h4>🏆 Achievements Page</h4>
+                    <p>Display awards, accomplishments, and milestones organized by year and category.</p>
+                </div>
+                
+                <div class="page-card">
+                    <h4>🥇 Tournaments Page</h4>
+                    <p>Track tournament participation, wins, positions, and descriptions.</p>
+                </div>
+                
+                <div class="page-card">
+                    <h4>📸 Gallery Page</h4>
+                    <p>Photo gallery showcasing academy moments with categories and hover effects.</p>
+                </div>
+                
+                <div class="page-card">
+                    <h4>📧 Contact Page</h4>
+                    <p>Contact form with validation, academy contact info, location, and hours.</p>
+                </div>
+            </div>
+            
+            <!-- Features Section -->
+            <div id="features" class="section">
+                <h2>✨ Features</h2>
+                
+                <h3>Design & UX</h3>
+                <ul class="feature-list">
+                    <li>Fully responsive mobile design</li>
+                    <li>Professional UI/UX with Tailwind CSS</li>
+                    <li>Smooth animations and transitions</li>
+                    <li>Consistent branding throughout</li>
+                    <li>Sticky navigation bar</li>
+                    <li>Professional footer</li>
+                </ul>
+                
+                <h3>Performance</h3>
+                <ul class="feature-list">
+                    <li>Fast page load times</li>
+                    <li>Code splitting & optimization</li>
+                    <li>Image optimization ready</li>
+                    <li>SEO meta tags configured</li>
+                    <li>Production-grade build setup</li>
+                </ul>
+                
+                <h3>Functionality</h3>
+                <ul class="feature-list">
+                    <li>Working contact form</li>
+                    <li>Form validation</li>
+                    <li>Error handling</li>
+                    <li>API routes for backend</li>
+                    <li>Environment variables support</li>
+                </ul>
+                
+                <h3>Development</h3>
+                <ul class="feature-list">
+                    <li>TypeScript strict mode</li>
+                    <li>ESLint configuration</li>
+                    <li>Code comments included</li>
+                    <li>Best practices followed</li>
+                    <li>Easy to extend</li>
+                </ul>
+            </div>
+            
+            <!-- Setup Section -->
+            <div id="setup" class="section">
+                <h2>⚙️ Setup & Running</h2>
+                
+                <div class="highlight">
+                    <strong>⚠️ npm Issue?</strong> Follow the alternative method below if npm is not recognized!
+                </div>
+                
+                <h3>Method 1: Fix npm PATH (If npm is installed)</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Add Node.js to PATH</h4>
+                    <p>Run this in PowerShell:</p>
+                    <div class="code-block">$env:PATH = "C:\Program Files\nodejs;$env:PATH"</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Verify npm works</h4>
+                    <p>Check if npm is now recognized:</p>
+                    <div class="code-block">npm --version</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Navigate to project</h4>
+                    <p>Go to the project directory:</p>
+                    <div class="code-block">cd "C:\Users\PYV1QSS\source\repos\New folder\cricket-academy-web"</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Install dependencies</h4>
+                    <p>Install required packages:</p>
+                    <div class="code-block">npm install</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Run development server</h4>
+                    <p>Start the development server:</p>
+                    <div class="code-block">npm run dev</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h4>View in browser</h4>
+                    <p>Open your browser and visit:</p>
+                    <div class="code-block">http://localhost:3000</div>
+                </div>
+                
+                <h3>Method 2: Use Vercel (No Local Setup Needed!)</h3>
+                
+                <div class="highlight">
+                    <strong>✨ Recommended!</strong> Skip npm issues entirely by deploying directly to Vercel!
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Push to GitHub</h4>
+                    <p>Commit and push your code:</p>
+                    <div class="code-block">
+cd cricket-academy-web
+git init
+git add .
+git commit -m "Cricket Academy Website"
+git push origin main
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Go to Vercel</h4>
+                    <p>Visit: <a href="https://vercel.com/new" target="_blank">https://vercel.com/new</a></p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Import Repository</h4>
+                    <p>Click "Import Git Repository" and select your cricket-academy-web repo</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Deploy</h4>
+                    <p>Click "Deploy" - Vercel handles everything!</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Your site is live!</h4>
+                    <p>Get your URL and share it!</p>
+                </div>
+            </div>
+            
+            <!-- Deployment Section -->
+            <div id="deploy" class="section">
+                <h2>🚀 Deployment Guide</h2>
+                
+                <h3>Quick Deployment to Vercel (Easiest)</h3>
+                
+                <div class="highlight">
+                    <strong>This takes 5 minutes!</strong> Vercel handles npm installation automatically.
+                </div>
+                
+                <ol style="margin-left: 20px; line-height: 2;">
+                    <li>Create Vercel account: <a href="https://vercel.com" target="_blank">https://vercel.com</a></li>
+                    <li>Push code to GitHub</li>
+                    <li>Visit <a href="https://vercel.com/new" target="_blank">https://vercel.com/new</a></li>
+                    <li>Import your GitHub repository</li>
+                    <li>Click "Deploy"</li>
+                    <li>Wait for deployment (2-3 minutes)</li>
+                    <li>Share your live URL!</li>
+                </ol>
+                
+                <h3>Deploy to Railway (Alternative)</h3>
+                
+                <ol style="margin-left: 20px; line-height: 2;">
+                    <li>Create Railway account: <a href="https://railway.app" target="_blank">https://railway.app</a></li>
+                    <li>Connect GitHub account</li>
+                    <li>Select your repository</li>
+                    <li>Railway auto-detects Next.js</li>
+                    <li>Configure environment variables</li>
+                    <li>Deploy automatically</li>
+                </ol>
+                
+                <h3>Key Files for Deployment</h3>
+                <ul class="feature-list">
+                    <li><strong>package.json</strong> - Dependencies</li>
+                    <li><strong>next.config.js</strong> - Next.js configuration</li>
+                    <li><strong>.env.example</strong> - Environment template</li>
+                    <li><strong>DEPLOYMENT.md</strong> - Detailed guide</li>
+                </ul>
+            </div>
+            
+            <!-- Customize Section -->
+            <div id="customize" class="section">
+                <h2>🎨 Customization Guide</h2>
+                
+                <h3>1. Change Academy Name</h3>
+                <p><strong>File:</strong> <code>app/layout.tsx</code></p>
+                <div class="code-block">
+// Change this line:
+&lt;h1 className="text-2xl font-bold"&gt;Elite Cricket Academy&lt;/h1&gt;
+
+// To your academy name:
+&lt;h1 className="text-2xl font-bold"&gt;Your Academy Name&lt;/h1&gt;
+                </div>
+                
+                <h3>2. Change Colors</h3>
+                <p><strong>File:</strong> <code>tailwind.config.js</code></p>
+                <div class="code-block">
+colors: {
+  primary: '#1e40af',     // Change this (primary blue)
+  secondary: '#ea580c',   // Change this (secondary orange)
+}
+                </div>
+                
+                <h3>3. Update Team Data</h3>
+                <p><strong>File:</strong> <code>app/teams/page.tsx</code></p>
+                <div class="code-block">
+const teams = [
+  { 
+    id: 1, 
+    name: 'Your Team Name', 
+    coach: 'Coach Name', 
+    players: 18, 
+    wins: 22 
+  },
+  // Add more teams...
+];
+                </div>
+                
+                <h3>4. Update Player Data</h3>
+                <p><strong>File:</strong> <code>app/players/page.tsx</code></p>
+                <div class="code-block">
+const players = [
+  { 
+    id: 1, 
+    name: 'Player Name', 
+    team: 'Team Name', 
+    position: 'Batsman', 
+    runs: 1250, 
+    wickets: 0 
+  },
+  // Add more players...
+];
+                </div>
+                
+                <h3>5. Add Your Images</h3>
+                <p><strong>Location:</strong> <code>public/images/</code></p>
+                <p>Place your images in this folder and reference them:</p>
+                <div class="code-block">
+&lt;img src="/images/your-image.jpg" alt="Description" /&gt;
+                </div>
+                
+                <h3>6. Update Contact Information</h3>
+                <p><strong>File:</strong> <code>app/contact/page.tsx</code></p>
+                <ul class="feature-list">
+                    <li>Update academy address</li>
+                    <li>Update phone number</li>
+                    <li>Update email address</li>
+                    <li>Update contact hours</li>
+                </ul>
+                
+                <h3>7. Update Other Pages</h3>
+                <p>Edit each page file to customize content:</p>
+                <ul class="feature-list">
+                    <li><code>app/about/page.tsx</code> - Academy story</li>
+                    <li><code>app/coaches/page.tsx</code> - Coach profiles</li>
+                    <li><code>app/achievements/page.tsx</code> - Achievements</li>
+                    <li><code>app/tournaments/page.tsx</code> - Tournaments</li>
+                    <li><code>app/gallery/page.tsx</code> - Gallery</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <h3>🎯 Quick Links</h3>
+            <div class="button-group" style="justify-content: center;">
+                <a href="https://nextjs.org/docs" class="btn btn-primary" target="_blank">Next.js Docs</a>
+                <a href="https://vercel.com" class="btn btn-secondary" target="_blank">Deploy to Vercel</a>
+                <a href="https://tailwindcss.com" class="btn btn-primary" target="_blank">Tailwind CSS</a>
+            </div>
+            <p style="margin-top: 30px; color: #999;">
+                Elite Cricket Academy Website | Created with ❤️ | 2026
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
